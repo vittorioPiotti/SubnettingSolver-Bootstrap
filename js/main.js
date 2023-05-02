@@ -245,6 +245,24 @@ class StessaRete{
     }
 
     checkInput(){
+                /*
+        console.log(this.netId[0].sm.getAddressBin())
+
+        for(let i = 0; i <  this.netId[0].sm.getAddressBin(); i ++){
+            this.netId[0].sm.getOttettoBin(i);
+            if()
+        }
+        switch(this.netId[0].ip.getClasse()){
+            case 'A':
+                break;
+            case 'B':
+                break;
+            case 'C':
+                break;
+            default:
+                return false;
+        }
+        */
         if(this.netId[0].checkInput() == true &&  this.netId[1].checkInput() == true)return true;
         else return false;
     }
@@ -305,14 +323,237 @@ class MascheraFissa{
 }
 
 class MascheraVariabile{
+    getAddress(i,tipo){
+      
+            return this.reti[i][tipo].getAddress();   
+        
+    }
+    getBitSm(){
+        let sm = "";
+        switch(this.ip.getClasse()){
+            case "A":
+                sm = 8
+                break;
+            case "B":
+                sm = 16
+                break;
+            case "C": 
+                sm = 24
+                break;
+        }
+        return sm;
+    }
+    getSm(){
+        let sm = "";
+        switch(this.ip.getClasse()){
+            case "A":
+                sm = "255 0 0 0"
+                break;
+            case "B":
+                sm = "255 255 0 0"
+                break;
+            case "C": 
+                sm = "255 255 255 0"
+                break;
+        }
+        return sm;
+    }
+    initSm(){
+        let appSm = this.sm.getAddress().split(" ");
+        for(let i = 0; i < appSm.length; i ++)appSm[i] = parseInt(appSm[i]).toString(2);
+
+
+        
+    }
+    mascheraVariabile(){
+        for(let i = 0; i < this.numSubnet; i ++){
+            this.initIp(i);
+        }
+    }
+    initIp(rete){
+        let appIp = this.ip.getAddress().split(" ");
+        let app = ""
+        for(let i = 0; i < appIp.length; i ++){
+            appIp[i] = parseInt(appIp[i]).toString(2);
+
+            if(appIp[i].length < 8){
+                app = "";
+                for(let j = 0; j < 8 - appIp[i].length; j ++){
+                   app += "0";
+                }
+                appIp[i] = app + appIp[i];
+            }
+        }
+       
+     
+        let k = 0;
+        app = 0;
+        
+        do{
+            app += this.maxHostSottorete[k];
+            k++;
+        }while( k <= rete)
+        app -= this.maxHostSottorete[rete];
+
+        console.log("APP = " + app);
+        app = app.toString(2);
+        console.log("APP = " + app);
+        let c = 0;
+        let i = this.bitSm / 8;
+      
+        while(c < app.length){
+        
+            appIp[i] = app;
+            if(appIp[i].length < 8){
+                app = "";
+                for(let j = 0; j < 8 - appIp[i].length; j ++){
+                   app += "0";
+                }
+                appIp[i] =  app + appIp[i] ;
+            }
+            c += 8;
+            
+        }
+       
+        console.log("cazzo : " + appIp)
+        let decimale = []
+            for (let i = 0; i < appIp.length; i++) {
+                var binario = appIp[i];
+                var dec = parseInt(binario, 2);
+                decimale.push(dec);
+            }
+
+            
+        let appIpString = decimale.join(" ");
+        console.log("cazzo : " + appIpString)
+      this.reti[rete][IP] = new Ip(appIpString);
+
+
+
+        let hostSubnetM = 32 - this.bitXhost[rete];
+        let appSm = this.generateSubnetMask(hostSubnetM)
+        this.reti[rete][SM] = new Sm(appSm);
+        this.reti[rete][ID] = new NetId(this.reti[rete][IP].getAddress(),this.reti[rete][SM].getAddress());
+        this.reti[rete][GW] = new Gateway(this.reti[rete][IP].getAddress(),this.reti[rete][SM].getAddress());
+        this.reti[rete][SH] = new StartHost(this.reti[rete][IP].getAddress(),this.reti[rete][SM].getAddress());
+        this.reti[rete][EH] = new EndHost(this.reti[rete][IP].getAddress(),this.reti[rete][SM].getAddress());
+        this.reti[rete][BR] = new Broadcast(this.reti[rete][IP].getAddress(),this.reti[rete][SM].getAddress());
+    
+      
+     
+        
+    }
+    checkSottoreti(){
+        //numero sottoreti - 3 (gateway,broadcast,netId)
+        if(this.ip.checkAddress() == true){
+            const classi = ["A", "B", "C"];
+            if(this.numSubnet  == 0)return false;
+            for(let i = 0; i < 3; i++)if( this.ip.getClasse() == classi[i] && this.numSubnet >= Math.pow(2,24 - (8*i)) - 3)return false;
+            return true;
+        }
+    }
+    checkHostSottoreti(){
+        
+        for(let i = 0; i < this.hostXsubnet.length; i ++){
+  if (this.hostXsubnet[i] !== null) {
+    if (Number.isInteger(parseInt(this.hostXsubnet[i]))) {
+        if(parseInt(this.hostXsubnet[i]) >= Math.pow(2,parseInt(this.maxHostXsottorete)) - 3)return false;
+
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+        }
+        return true;
+    }
+    checkInput(){
+    
+        if(this.ip.checkAddress() == true && this.checkSottoreti() == true && this.checkHostSottoreti() == true)return true;
+        else return false;
+    }
+    generateSubnetMask(bit) {
+        let subnetMaskArray = [];
+      
+        let numBytes = Math.ceil(bit / 8);
+      
+        for (let i = 0; i < numBytes; i++) {
+          if (bit >= 8) {
+            subnetMaskArray.push(255);
+            bit -= 8;
+          } else {
+            subnetMaskArray.push(256 - Math.pow(2, 8 - bit));
+            bit = 0;
+          }
+        }
+      
+        let subnetMaskString = subnetMaskArray.join(' ');
+      
+        return subnetMaskString;
+      }
+      
+  
+      
+    getBitXhost(numHost) {
+        let bit = 0;
+        while (Math.pow(2, bit) - 2 < numHost) {
+          bit++;
+        }
+        
+        return bit;
+      }
+constructor(ip,numSubnet,hostXsubnet){
+
+    this.ip = new Ip(ip);
+    this.sm = new Sm(this.getSm());
+    this.bitSm = this.getBitSm();
+    this.reti = new Array();
+    this.numSubnet = numSubnet;
+    this.hostXsubnet = hostXsubnet.sort(function(a, b) {
+        return b - a;
+      });
+    
+    this.bitXhost = [];
+    this.totBitSottoreti = 0;
+    this.bitXsubnet = [];
+    this.maxHostSottorete = [];
+    
+    for(let i = 0; i < this.hostXsubnet.length; i ++ ){
+        this.bitXhost[i] = this.getBitXhost(this.hostXsubnet[i])
+        this.totBitSottoreti += this.bitXhost[i];
+        this.bitXsubnet[i] = this.getBitSm() + this.bitXhost[i];
+        this.maxHostSottorete[i] = Math.pow(2, this.bitXhost[i]);
+    }
+  
+    
+    this.bitRete = 32 - this.totBitSottoreti ;
+    this.numBitSubnet =  parseInt(numSubnet - 1).toString(2).length;
+    this.maxHostXsottorete = 32 - this.bitSm - this.numBitSubnet;
+    console.log(this.maxHostXsottorete)
+    this.maxSubnet = Math.pow(this.numSubnet, 2);
+    let app = []
+    let appDecimale = [];
+    for (let i = 0; i < app.length; i++) {
+        let decimale = parseInt(app[i], 2).toString(10);
+        appDecimale.push(decimale);
+      }
+ 
+      
+      
+   
+      
+
+    for(let i = 0; i < this.numSubnet; i ++)this.reti[i] = new Array();
+    
+   
+
 
 }
 
-class Subnetting{
-
-
-
 }
+
+
 
 class Esercizio{
     constructor (nome,input,short){
@@ -407,7 +648,6 @@ function initExtraInput(){
         document.getElementById("extraInput").classList.remove(displayOff);
     });
 }
-
 function check(){
     return true;
 }
@@ -417,8 +657,12 @@ function refresh(){selected = select.options[select.selectedIndex].value;}
 
 function load(){
     let input = document.getElementsByTagName("input");
+    let inputForm = document.getElementById("inputForm");
+    let outputForm = document.getElementById("outputForm");
     let check = true;
     let output = "";
+    inputForm.className = "col-lg-5 col-12 mb-3";
+    outputForm.className  = "col-lg-7 col-12 mb-3";
     switch(parseInt(selected)){
         case RILEVA_IP:
             let rilveIp = new Ip(input[0].value);
@@ -474,11 +718,14 @@ function load(){
             }
             break;
         case FLSM:
+          
             let mascheraFissa = new MascheraFissa(input[0].value,input[1].value);
             check = mascheraFissa.checkInput();
             if(check == true){
+                inputForm.className = " col-12 mb-3";
+                outputForm.className  = "col-12 mb-3";
                 mascheraFissa.setSubnetting();
-                output = "<div class='table-responsive'style='max-height:570px; overflow-y:auto;'>"
+                output = "<div class='table-responsive'style='overflow-y:auto;'>"
                 output += "<table class='table table-bordered table-hover' style='min-width:900px;'>"
                 output += "<thead class='table-light'>"
                 output += "<tr>"
@@ -512,8 +759,52 @@ function load(){
             }
             break;
         case VLSM:
-            alert("in progress...")
+            inputForm.className = " col-12 mb-3";
+            outputForm.className  = "col-12 mb-3";
+            let ip = input[0].value;
+            let numeroSottoreti = input[1].value;
+            let hostXsottorete = [];
+            for(let i = 0 ; i < numeroSottoreti; i ++){
+                hostXsottorete.push(input[i + 2].value)
+            }
+            let mascheraVariabile = new MascheraVariabile(ip,numeroSottoreti,hostXsottorete);
+            check = mascheraVariabile.checkInput();
+            if(check == true){
+                mascheraVariabile.mascheraVariabile();
+           
+            output = "<div class='table-responsive'style='overflow-y:auto;'>"
+            output += "<table class='table table-bordered table-hover' style='min-width:900px;'>"
+            output += "<thead class='table-light'>"
+            output += "<tr>"
+            output += "<td class='text-center'>#</td>"
+            output += "<td >IP</td>"
+            output += "<td >Net Id</td>"
+            output += "<td>Gateway</td>"
+            output += "<td >Primo host</td>"
+            output += "<td >Ultimo host</td>"
+            output += "<td >Broadcast</td>"
+            output += "<td>Subnetmask</td>"
+            output += "</tr>"
+            output += "</thead>"
+            output += "<tbody class='fw-light'>"
+            for(let i= 0; i < input[1].value; i ++){
+                output += "<tr>"
+                output += "<td class='text-center'>" + (i + 1)+"</td>"
+                output += "<td >" + mascheraVariabile.getAddress(i,IP)+"</td>"
+                output += "<td >" + mascheraVariabile.getAddress(i,ID)+"</td>"
+                output += "<td >" + mascheraVariabile.getAddress(i,GW)+"</td>"
+                output += "<td >" + mascheraVariabile.getAddress(i,SH)+"</td>"
+                output += "<td >" + mascheraVariabile.getAddress(i,EH)+"</td>"
+                output += "<td >" + mascheraVariabile.getAddress(i,BR)+"</td>"
+                output += "<td >" + mascheraVariabile.getAddress(i,SM)+"</td>"
+                output += "</tr>"
+            }
+
+            output += "</tbody>"
+            output += "</table>"
+            output += "</div>"
             break;
+        }
 
     }
     if(check == true){
