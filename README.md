@@ -29,15 +29,15 @@ Video di Test [(link)](https://drive.google.com/file/d/17XctjTlS7LYgrnKikc7BHBkw
 
 ---
 
-<img src="https://github.com/vittorioPiotti/Subnet-Solver-Java/blob/main/screenshots/vlsm.png" />
+<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/flsm.png" />
 
 
 ## Screenshots
 
 
-|<img src="https://github.com/vittorioPiotti/Subnet-Solver-Java/blob/main/screenshots/ip.png" /> | <img src="https://github.com/vittorioPiotti/Subnet-Solver-Java/blob/main/screenshots/net.png" />|
+|<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/ip.png" /> | <img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/net.png" />|
 |-|-|
-|<img src="https://github.com/vittorioPiotti/Subnet-Solver-Java/blob/main/screenshots/flsm.png" />|<img src="https://github.com/vittorioPiotti/Subnet-Solver-Java/blob/main/screenshots/vlsm.png" />|
+|<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/flsm.png" />|<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/vlsm.png" />|
 
 
 
