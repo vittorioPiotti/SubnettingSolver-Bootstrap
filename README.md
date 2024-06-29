@@ -4,10 +4,8 @@ Soluzione web per la risoluzione degli esercizi sulle reti.
 
 
 > [!TIP]
-> Corretto funzionamento dell'UI garantito
+> Corretto funzionamento garantito
 
-> [!WARNING]
-> Corretto funzionamento dell'algoritmo per la VLSM non garantito
 
 
 ## Funzionalità
