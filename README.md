@@ -35,7 +35,7 @@ Video di Test [(link)](https://drive.google.com/file/d/17XctjTlS7LYgrnKikc7BHBkw
 ## Screenshots
 
 
-|<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/ip.png" /> | <img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/net.png" />|
+|<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/ip.png" /> | <img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/netid.png" />|
 |-|-|
 |<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/flsm.png" />|<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/vlsm.png" />|
 
