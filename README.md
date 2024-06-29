@@ -39,7 +39,12 @@ Video di Test [(link)](https://drive.google.com/file/d/17XctjTlS7LYgrnKikc7BHBkw
 |-|-|
 |<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/flsm.png" />|<img src="https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/screenshots/vlsm.png" />|
 
+## Licenze
 
+| Componente         | Versione  | Copyright                         | Licenza                                                       |
+|--------------------|-----------|-----------------------------------|---------------------------------------------------------------|
+| Subnetting-Bootstrap | v1.0.0    | 2024 Vittorio Piotti              | [GPL-3.0 License](https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/LICENSE.md) |
+| Bootstrap          | v4.0.0    | 2011-2018 The Bootstrap Authors   | [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE) |
 
 
 ## Licenze
