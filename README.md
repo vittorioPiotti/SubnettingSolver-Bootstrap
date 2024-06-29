@@ -1,4 +1,4 @@
-# Subnet Solver Java
+# Subnetting Bootstrap
 
 Soluzione web per la risoluzione degli esercizi sulle reti.
 
