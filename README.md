@@ -24,7 +24,7 @@ La grafica del sito web è stata ispirata e **sviluppata indipendentemente** rip
 
 ## Preview
 
-Video di Test [(link)](https://drive.google.com/file/d/17XctjTlS7LYgrnKikc7BHBkw4H3vvMtA/view?usp=sharing)
+Link al Sito [(link)](https://vittoriopiotti.altervista.org/Subnetting/index.html)
 
 
 ---
