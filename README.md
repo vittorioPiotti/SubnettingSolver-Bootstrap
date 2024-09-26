@@ -52,7 +52,7 @@ Link al Sito [(link)](https://vittoriopiotti.altervista.org/Subnetting/index.htm
 
 | Componente         | Versione  | Copyright                         | Licenza                                                       |
 |--------------------|-----------|-----------------------------------|---------------------------------------------------------------|
-| Subnetting-Bootstrap | v1.0.0    | 2024 Vittorio Piotti              | [GPL-3.0 License](https://github.com/vittorioPiotti/Subnetting-Bootstrap/blob/main/LICENSE.md) |
+| [SubnettingSolver](https://github.com/vittorioPiotti/SubnettingSolver-Bootstrap) | [v1.0.0](https://github.com/vittorioPiotti/SubnettingSolver-Bootstrap/releases/tag/v1.0.0)    | 2024 Vittorio Piotti [(GitHub page)](https://github.com/vittorioPiotti) [(Personal page)](https://vittoriopiotti.altervista.org/)            | [GPL-3.0 ](https://github.com/vittorioPiotti/SubnettingSolver-Bootstrap/blob/main/LICENSE.md) |
 | Bootstrap          | v4.0.0    | 2011-2018 The Bootstrap Authors   | [MIT License](https://github.com/twbs/bootstrap/blob/master/LICENSE) |
 
 
