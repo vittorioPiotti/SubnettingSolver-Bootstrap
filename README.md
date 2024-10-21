@@ -7,10 +7,6 @@ Soluzione web per la risoluzione degli esercizi sulle reti.
 
 
 
-
-> [!TIP]
-> Corretto funzionamento garantito
-
 > [!WARNING]
 > Correttezza VLSM non garantita
 
