@@ -50,10 +50,24 @@ Link al Sito [(link)](https://vittoriopiotti.altervista.org/Subnetting/index.htm
 
 ## Licenze
 
-| Componente         | Versione  | Copyright                         | Licenza                                                       |
-|--------------------|-----------|-----------------------------------|---------------------------------------------------------------|
-| [SubnettingSolver](https://github.com/vittorioPiotti/SubnettingSolver-Bootstrap) | [v1.0.0](https://github.com/vittorioPiotti/SubnettingSolver-Bootstrap/releases/tag/v1.0.0)    | 2024 Vittorio Piotti [(GitHub page)](https://github.com/vittorioPiotti) [(Personal page)](https://vittoriopiotti.altervista.org/)            | [GPL-3.0 ](https://github.com/vittorioPiotti/SubnettingSolver-Bootstrap/blob/main/LICENSE.md) |
-| Bootstrap          | v4.0.0    | 2011-2018 The Bootstrap Authors   | [MIT](https://github.com/twbs/bootstrap/blob/master/LICENSE) |
 
+### SubnettingSolver
+
+**Copyright** 2024 Vittorio Piotti [(GitHub page)](https://github.com/vittorioPiotti) [(Personal page)](https://vittoriopiotti.altervista.org/)
+
+**Version** [v1.0.0](https://github.com/vittorioPiotti/SubnettingSolver-Bootstrap/releases/tag/v1.0.0)
+
+**License** [GPL-3.0](https://github.com/vittorioPiotti/SubnettingSolver-Bootstrap/blob/main/LICENSE.md)
+
+
+---
+
+### Bootstrap
+
+**Copyright** 2011-2018 The Bootstrap Authors 
+
+**Version** [v5.2](https://github.com/twbs/bootstrap/releases/tag/v5.2.0)
+
+**License** [MIT](https://github.com/twbs/bootstrap/blob/main/LICENSE)
 
 
